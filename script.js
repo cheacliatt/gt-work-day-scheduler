@@ -11,12 +11,9 @@ $(document).ready(function () {
     "5 PM",
   ];
 
+  var emptyBox = [];
+
   var currentTime = moment().format("h A");
-
-
-  // var hourIndex = 0;
-
-  // var currentHour = moment().format(HH);
 
   // Populate a row for each hour, then set up three columns in each row
   // the first column should be a class of "col-sm-1" and contain an hour
@@ -30,42 +27,41 @@ $(document).ready(function () {
     // var currentHour = moment().format("HHmm")
     var hourList = arrayOfHours[i];
     var timeTableRows = $("<div class='row form-group hour-rows'>");
-    var hourEl = $("<div class='col-sm-1'>");
+    var hourEl = $("<div class='col-sm-1 hour-col'>");
     var textEl = $("<textarea class='col-sm-10 time-sensitive form-control'>");
-    var saveEl = $("<button type='button' class='col-sm-1 btn btn-info i fas fa-lock'>");
+    var saveEl = $("<button type='submit' class='col-sm-1 btn btn-info i fas fa-lock'>");
     hourEl.text(hourList);
     timeTableRows.append(hourEl).append(textEl).append(saveEl);
     $("#time-table").append(timeTableRows);
 
     if (hourList.match(currentTime)) {
-      $(".time-sensitive").attr("style", "background-color: red");
+      $(textEl).addClass("present");
+    } else if (hourList < currentTime) {
+      $(textEl).addClass("past");
+    } else {
+      $(textEl).addClass("future");
     }
-  }
+  };
 
-  $(".btn").on("click", function() {
-    console.log("You clicked my button!");
+  $(".btn").on("click", function(event) {
+    var entryEl = $(".time-sensitive").val();
+    emptyBox.push(entryEl);
+    console.log(entryEl);
+    event.preventDefault();
+
+    if (emptyBox.length > 0) {
+      console.log("You submitted the form.")
+    }
   });
 
-
-
-  var maybe = moment().isAfter(hourList);
-  console.log(maybe);
-    // If a row of time is after the current time in the time-table, it should turn green 
-    // Look at calculator example
-
-  // if(moment().isAfter(hourList) === true ) {
-  //   $(".time-sensitive").attr('style',  'background-color:green');
-  // }
 });
 
-// Apply moment attributes to each hour
-// Make the rows change color based off which hour it is
 
-// var currentHourTime = moment().format(HH);
-
-//   if (moment().format(HH) === true) {
-//     $(".time-sensitive").attr("style", "background-color: red");
-//   }
+// if(document.getElementById("field").value == '')
+// {
+//     alert("debug");
+//     document.getElementById("field").style.display ="none";
+// }
 
 
 var currentTime = moment().format("dddd Do MMMM YYYY");
@@ -73,6 +69,3 @@ var currentTime = moment().format("dddd Do MMMM YYYY");
 // console.log(currentTime);
 
 $("#currentDay").text(currentTime);
-
-var milTime = moment().format("HHA");
-console.log(milTime);
