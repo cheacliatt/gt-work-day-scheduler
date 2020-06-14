@@ -34,6 +34,9 @@ $(document).ready(function () {
   // the second column should be a class of "col-sm-10" and contain a input text area
   // the third column should be a class of "col-sm-1" and have a button that will save the text on local storage
 
+  // var currentTime = moment();
+  // $("#currentDay").text.(currentTime);
+
   for (var i = 0; i < arrayOfHours.length; i++) {
     console.log(arrayOfHours[i]);
     var hourList = arrayOfHours[i];
@@ -49,5 +52,13 @@ $(document).ready(function () {
   }
 });
 
-// var currentTime = moment();
-// console.log(currentTime);
+// Apply moment attributes to each hour
+// Make the rows change color based off which hour it is
+
+
+
+var currentTime = moment().format("dddd Do MMMM YYYY")
+
+console.log(currentTime);
+
+$("#currentDay").text(currentTime);
