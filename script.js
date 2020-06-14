@@ -37,19 +37,29 @@ $(document).ready(function () {
   // var currentTime = moment();
   // $("#currentDay").text.(currentTime);
 
+  moment('2010-10-20').isAfter('2010-10-19'); // true
+
   for (var i = 0; i < arrayOfHours.length; i++) {
     console.log(arrayOfHours[i]);
+    // var currentHour = moment().format("HHmm")
     var hourList = arrayOfHours[i];
     var timeTableRows = $("<div class='row form-group hourRows'>");
     var hourEl = $("<div class='col-sm-1'>");
-    var textEl = $("<textarea class='col-sm-10 form-control'>");
+    var textEl = $("<textarea class='col-sm-10 time-sensitive form-control'>");
     var saveEl = $("<button type='button' class='col-sm-1 btn btn-info'>");
     hourEl.text(hourList);
-    timeTableRows.append(hourEl);
-    timeTableRows.append(textEl);
-    timeTableRows.append(saveEl);
+    timeTableRows.append(hourEl).append(textEl).append(saveEl);
     $("#time-table").append(timeTableRows);
   }
+
+
+  var maybe = moment().isAfter(hourList);
+  console.log(maybe);
+    // If a row of time is after the current time in the time-table, it should turn green 
+
+  // if(moment().isAfter(hourList) === true ) {
+  //   $(".time-sensitive").attr('style',  'background-color:green');
+  // }
 });
 
 // Apply moment attributes to each hour
