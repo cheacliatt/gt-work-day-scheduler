@@ -26,11 +26,12 @@ $(document).ready(function () {
     console.log(arrayOfHours[i]);
     // var currentHour = moment().format("HHmm")
     var hourList = arrayOfHours[i];
-    var timeTableRows = $("<div class='row form-group hour-rows'>");
+    var timeTableRows = $("<section class='row form-group hour-rows'>");
     var hourEl = $("<div class='col-sm-1 hour-col'>");
     var textEl = $("<textarea class='col-sm-10 time-sensitive form-control'>");
     var saveEl = $("<button type='submit' class='col-sm-1 btn btn-info i fas fa-lock'>");
     hourEl.text(hourList);
+    textEl.addClass(arrayOfHours[i]);
     timeTableRows.append(hourEl).append(textEl).append(saveEl);
     $("#time-table").append(timeTableRows);
 
@@ -43,11 +44,14 @@ $(document).ready(function () {
     }
   };
 
-  $(".btn").on("click", function(event) {
-    var entryEl = $(".time-sensitive").val();
+  $(".btn").on("click", "section", function() {
+    // event.preventDefault();
+    var entryEl = $(".11").val();
+    var entryEl12 = $(".12").val();
     emptyBox.push(entryEl);
+    emptyBox.push(entryEl12)
     console.log(entryEl);
-    event.preventDefault();
+    console.log(entryEl12);
 
     if (emptyBox.length > 0) {
       console.log("You submitted the form.")
